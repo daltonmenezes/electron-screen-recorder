@@ -1,18 +1,7 @@
 const getVideoSources = require('./lib/get-video-resources')
+const clickEvents = require('./lib/events/click')
 
 window.mediaRecorder
-
-const startBtn = document.getElementById('startBtn')
-
-startBtn.onclick = e => {
-  window.mediaRecorder.start()
-  
-  startBtn
-    .classList
-    .add('is-danger')
-  
-  startBtn.innerText = 'Recording'
-}
 
 const stopBtn = document.getElementById('stopBtn')
 
