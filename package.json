@@ -10,7 +10,6 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "postinstall": "electron-builder install-app-deps",
-		"build": "electron-builder --mac --windows --linux",
 		"release": "electron-builder --mac --windows --linux --publish always",
     "lint": "echo \"No linting configured\""
   },
