@@ -15,7 +15,7 @@ const createWindow = () => {
   })
 
   mainWindow.loadFile(
-    path.join(__dirname, 'index.html')
+    path.resolve(__dirname, 'renderer', 'index.html')
   )
 
   mainWindow
