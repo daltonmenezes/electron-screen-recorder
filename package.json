@@ -11,6 +11,7 @@
     "publish": "electron-forge publish",
     "postinstall": "electron-builder install-app-deps",
 		"release": "electron-builder --mac --windows --linux --publish always",
+    "ci:release": "git commit -am v1.0.0 && git tag v1.0.0 && git push && git push --tags",
     "lint": "echo \"No linting configured\""
   },
   "keywords": [],
