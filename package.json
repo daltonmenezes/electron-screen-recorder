@@ -1,7 +1,7 @@
 {
   "name": "electron-screen-recorder",
   "productName": "electron-screen-recorder",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Desktop screen recorder app built using web technologies",
   "main": "src/main/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "publish": "electron-forge publish",
     "postinstall": "electron-builder install-app-deps",
 		"release": "electron-builder --mac --windows --linux --publish always",
-    "ci:release": "git commit -am v1.0.0 && git tag v1.0.0 && git push && git push --tags",
+    "ci:release": "git commit -am v1.1.0 && git tag v1.1.0 && git push && git push --tags",
     "lint": "echo \"No linting configured\""
   },
   "keywords": [],
