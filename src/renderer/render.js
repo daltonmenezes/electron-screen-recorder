@@ -1,6 +1,7 @@
 const { desktopCapturer, remote } = require('electron')
 const { writeFile } = require('fs')
-const { dialog, Menu } = remote
+const { dialog } = remote
+const getVideoSources = require('./lib/get-video-resources')
 
 const recordedChunks = []
 
@@ -34,23 +35,6 @@ stopBtn.onclick = e => {
 const videoSelectBtn = document.getElementById('videoSelectBtn')
 
 videoSelectBtn.onclick = getVideoSources
-
-async function getVideoSources() {
-  const inputSources =
-    await desktopCapturer.getSources({
-      types: ['window', 'screen']
-    })
-
-  const videoOptionsMenu =
-    Menu.buildFromTemplate(
-      inputSources.map(source => ({
-        label: source.name,
-        click: () => selectSource(source)
-      }))
-    )
-
-  videoOptionsMenu.popup()
-}
 
 async function selectSource(source) {
   videoSelectBtn.innerText = source.name
