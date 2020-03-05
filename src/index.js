@@ -7,8 +7,8 @@ if (require('electron-squirrel-startup')) {
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 625,
+    height: 546,
     webPreferences: {
       nodeIntegration: true
     }
