@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu } = require('electron')
 const path = require('path')
 
 require('./lib/events')
@@ -6,6 +6,8 @@ require('./lib/events')
 if (require('electron-squirrel-startup')) {
     app.quit()
 }
+
+Menu.setApplicationMenu(null)
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
