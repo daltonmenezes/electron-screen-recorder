@@ -1,53 +1,59 @@
-const { desktopCapturer, remote } = require('electron');
+const { desktopCapturer, remote } = require('electron')
+const { writeFile } = require('fs')
+const { dialog, Menu } = remote
 
-const { writeFile } = require('fs');
+const recordedChunks = []
 
-const { dialog, Menu } = remote;
+let mediaRecorder
 
-let mediaRecorder;
-const recordedChunks = [];
+const videoElement = document.querySelector('video')
+const startBtn = document.getElementById('startBtn')
 
-const videoElement = document.querySelector('video');
-
-const startBtn = document.getElementById('startBtn');
 startBtn.onclick = e => {
-  mediaRecorder.start();
-  startBtn.classList.add('is-danger');
-  startBtn.innerText = 'Recording';
-};
+  mediaRecorder.start()
+  
+  startBtn
+    .classList
+    .add('is-danger')
+  
+  startBtn.innerText = 'Recording'
+}
 
-const stopBtn = document.getElementById('stopBtn');
+const stopBtn = document.getElementById('stopBtn')
 
 stopBtn.onclick = e => {
-  mediaRecorder.stop();
-  startBtn.classList.remove('is-danger');
-  startBtn.innerText = 'Start';
-};
+  mediaRecorder.stop()
+  
+  startBtn
+    .classList
+    .remove('is-danger')
+  
+  startBtn.innerText = 'Start'
+}
 
-const videoSelectBtn = document.getElementById('videoSelectBtn');
-videoSelectBtn.onclick = getVideoSources;
+const videoSelectBtn = document.getElementById('videoSelectBtn')
+
+videoSelectBtn.onclick = getVideoSources
 
 async function getVideoSources() {
-  const inputSources = await desktopCapturer.getSources({
-    types: ['window', 'screen']
-  });
+  const inputSources =
+    await desktopCapturer.getSources({
+      types: ['window', 'screen']
+    })
 
-  const videoOptionsMenu = Menu.buildFromTemplate(
-    inputSources.map(source => {
-      return {
+  const videoOptionsMenu =
+    Menu.buildFromTemplate(
+      inputSources.map(source => ({
         label: source.name,
         click: () => selectSource(source)
-      };
-    })
-  );
+      }))
+    )
 
-
-  videoOptionsMenu.popup();
+  videoOptionsMenu.popup()
 }
 
 async function selectSource(source) {
-
-  videoSelectBtn.innerText = source.name;
+  videoSelectBtn.innerText = source.name
 
   const constraints = {
     audio: false,
@@ -57,41 +63,51 @@ async function selectSource(source) {
         chromeMediaSourceId: source.id
       }
     }
-  };
+  }
 
-  const stream = await navigator.mediaDevices
-    .getUserMedia(constraints);
+  const stream =
+    await navigator
+      .mediaDevices
+      .getUserMedia(constraints)
 
-  videoElement.srcObject = stream;
-  videoElement.play();
+  videoElement.srcObject = stream
+  videoElement.play()
 
-  const options = { mimeType: 'video/webm; codecs=vp9' };
-  mediaRecorder = new MediaRecorder(stream, options);
+  const options = { mimeType: 'video/webm; codecs=vp9' }
 
-  mediaRecorder.ondataavailable = handleDataAvailable;
-  mediaRecorder.onstop = handleStop;
-
+  mediaRecorder = new MediaRecorder(stream, options)
+  mediaRecorder.ondataavailable = handleDataAvailable
+  mediaRecorder.onstop = handleStop
 }
 
 function handleDataAvailable(e) {
-  console.log('video data available');
-  recordedChunks.push(e.data);
+  console.log('video data available')
+  recordedChunks.push(e.data)
 }
 
 async function handleStop(e) {
-  const blob = new Blob(recordedChunks, {
-    type: 'video/webm; codecs=vp9'
-  });
+  const blob =
+    new Blob(
+      recordedChunks,
+      { type: 'video/webm; codecs=vp9' }
+    )
 
-  const buffer = Buffer.from(await blob.arrayBuffer());
+  const buffer =
+    Buffer.from(
+      await blob.arrayBuffer()
+    )
 
-  const { filePath } = await dialog.showSaveDialog({
-    buttonLabel: 'Save video',
-    defaultPath: `vid-${Date.now()}.webm`
-  });
+  const { filePath } =
+    await dialog.showSaveDialog({
+      buttonLabel: 'Save video',
+      defaultPath: `vid-${Date.now()}.webm`
+    })
 
   if (filePath) {
-    writeFile(filePath, buffer, () => console.log('video saved successfully!'));
+      writeFile(
+        filePath,
+        buffer,
+        () => console.log('video saved successfully!')
+      )
   }
-
 }
