@@ -1,4 +1,5 @@
-const { desktopCapturer, ipcRenderer } = require('electron')
+const { desktopCapturer } = require('electron')
+const { invokeContextMenu } = require('./events/ipc')
 
 module.exports = async function getVideoSources() {
   const inputSources =
@@ -6,5 +7,5 @@ module.exports = async function getVideoSources() {
       types: ['window', 'screen']
     })
 
-  ipcRenderer.invoke('context-menu', JSON.stringify(inputSources))
+  invokeContextMenu(inputSources)
 }
