@@ -5,6 +5,6 @@ module.exports = async function getVideoSources() {
     await desktopCapturer.getSources({
       types: ['window', 'screen']
     })
-  
-  ipcRenderer.invoke('context-menu', inputSources)
+
+  ipcRenderer.invoke('context-menu', JSON.stringify(inputSources))
 }
