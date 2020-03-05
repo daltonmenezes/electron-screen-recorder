@@ -4,7 +4,7 @@ const videoSelectBtn = document.getElementById('videoSelectBtn')
 const videoElement = document.querySelector('video')
 
 module.exports = async function selectSource(source) {
-  videoSelectBtn.innerText = source.name
+  videoSelectBtn.textContent = source.name
 
   const constraints = {
     audio: false,
