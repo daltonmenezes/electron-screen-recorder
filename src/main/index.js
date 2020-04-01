@@ -1,6 +1,8 @@
 const { app, BrowserWindow, Menu } = require('electron')
 const path = require('path')
 
+const isDev = process.env.MODE === 'development'
+
 require('./lib/events')
 
 if (require('electron-squirrel-startup')) {
@@ -27,9 +29,11 @@ const createWindow = () => {
     )
   )
 
-  // mainWindow
-  //   .webContents
-  //   .openDevTools()
+  if (isDev) {
+      mainWindow
+        .webContents
+        .openDevTools()
+  }
 }
 
 app.on('ready', createWindow)

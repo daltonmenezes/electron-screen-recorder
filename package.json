@@ -5,7 +5,7 @@
   "description": "A Desktop screen recorder app built using web technologies",
   "main": "src/main/index.js",
   "scripts": {
-    "start": "electron-forge start",
+    "start": "MODE=development electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
