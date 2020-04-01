@@ -4,8 +4,8 @@ const { invokeContextMenu } = require('./events/ipc')
 module.exports = async function getVideoSources() {
   const inputSources =
     await desktopCapturer.getSources({
-      types: ['window', 'screen']
+      types: ['screen', 'window']
     })
 
-  invokeContextMenu(inputSources)
+  invokeContextMenu(inputSources, 'input')
 }

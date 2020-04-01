@@ -10,7 +10,7 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "postinstall": "electron-builder install-app-deps",
-		"release": "electron-builder --mac --windows --linux --publish always",
+    "release": "electron-builder --mac --windows --linux --publish always",
     "ci:release": "git commit -am v1.1.0 && git tag v1.1.0; git push origin master && git push origin master --tags",
     "lint": "echo \"No linting configured\""
   },
@@ -48,21 +48,25 @@
     }
   },
   "build": {
-		"appId": "com.daltonmenezes.electron-screen-recorder",
-		"productName": "Electron Screen Recorder",
-		"mac": {
-			"category": "public.app-category.utilities"
-		},
-		"dmg": {
-			"icon": false
-		},
-		"linux": {
-			"target": ["AppImage"],
-			"category": "Utilities"
-		}
-	},
+    "appId": "com.daltonmenezes.electron-screen-recorder",
+    "productName": "Electron Screen Recorder",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "dmg": {
+      "icon": false
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utilities"
+    }
+  },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
+    "electron-squirrel-startup": "^1.0.0",
+    "fluent-ffmpeg": "^2.1.2"
   },
   "devDependencies": {
     "@electron-forge/cli": "6.0.0-beta.50",

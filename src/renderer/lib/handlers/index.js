@@ -1,10 +1,10 @@
-const { dialog } = require('electron').remote
-const { writeFile } = require('fs')
+const { createVideoFile } = require('./ffmpeg')
 
-const recordedChunks = []
+let recordedChunks = []
+
+exports.createVideoFile = createVideoFile
 
 exports.handleDataAvailable = function (e) {
-  console.log('video data available')
   recordedChunks.push(e.data)
 }
 
@@ -14,23 +14,10 @@ exports.handleStop = async function (e) {
       recordedChunks,
       { type: 'video/webm; codecs=vp9' }
     )
-
-  const buffer =
-    Buffer.from(
-      await blob.arrayBuffer()
-    )
-
-  const { filePath } =
-    await dialog.showSaveDialog({
-      buttonLabel: 'Save video',
-      defaultPath: `vid-${Date.now()}.webm`
-    })
-
-  if (filePath) {
-      writeFile(
-        filePath,
-        buffer,
-        () => console.log('video saved successfully!')
-      )
-  }
+  
+  recordedChunks = []
+  
+  window.videoBuffer = Buffer.from(
+    await blob.arrayBuffer()
+  )
 }
