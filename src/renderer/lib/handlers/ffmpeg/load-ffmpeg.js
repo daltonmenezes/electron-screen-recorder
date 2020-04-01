@@ -4,7 +4,9 @@ const fluentFfmpeg = require('fluent-ffmpeg')
 module.exports = function loadfMpeg () {
   const ffpmeg = new fluentFfmpeg()
   
-  ffpmeg.setFfmpegPath(ffmpegPath)
+  ffpmeg.setFfmpegPath(
+    ffmpegPath.replace('app.asar', 'app.asar.unpacked')
+  )
 
   return ffpmeg
 }

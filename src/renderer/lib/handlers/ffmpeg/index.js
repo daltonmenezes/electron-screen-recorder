@@ -1,5 +1,5 @@
 const { start, end } = require('../../events/export')
-const loadFfmpeg = require('./create-ffmpeg')
+const loadFfmpeg = require('./load-ffmpeg')
 const createReadableVideoBuffer = require('./create-readable-video-buffer')
 
 exports.createVideoFile = async function (filePath) {
