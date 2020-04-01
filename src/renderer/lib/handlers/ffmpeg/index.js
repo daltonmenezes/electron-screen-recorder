@@ -1,3 +1,4 @@
+const { start, end } = require('../../events/export')
 const loadFfmpeg = require('./create-ffmpeg')
 const createReadableVideoBuffer = require('./create-readable-video-buffer')
 
@@ -9,8 +10,7 @@ exports.createVideoFile = async function (filePath) {
     .input(readableVideoBuffer)
     .output(filePath)
     .withNoAudio()
-    .on('end', () => {
-      console.log('Finished')
-    })
+    .on('start', start)
+    .on('end', end)
     .run()    
 }

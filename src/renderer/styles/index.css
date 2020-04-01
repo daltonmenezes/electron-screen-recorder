@@ -24,3 +24,7 @@ video {
   height: auto;
   white-space: normal;
 }
+
+#saveProgressBar {
+  display: none;
+}
