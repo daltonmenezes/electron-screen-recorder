@@ -12,7 +12,10 @@ document
       .remove('is-danger')
     
     startBtn.textContent = 'Start'
-
+    
+    target.setAttribute('disabled', 'disabled')
+    
+    startBtn.removeAttribute('disabled')
     saveBtn.removeAttribute('disabled')
     videoSelectBtn.removeAttribute('disabled')
   })
