@@ -4,6 +4,8 @@ const videoSelectBtn = document.getElementById('videoSelectBtn')
 const videoElement = document.querySelector('video')
 
 module.exports = async function selectSource(source) {
+  const startBtn = document.getElementById('startBtn')
+
   videoSelectBtn.textContent = source.name
 
   const constraints = {
@@ -23,6 +25,7 @@ module.exports = async function selectSource(source) {
 
   videoElement.srcObject = stream
   videoElement.play()
+  startBtn.removeAttribute('disabled')
 
   const options = { mimeType: 'video/webm; codecs=vp9' }
 
