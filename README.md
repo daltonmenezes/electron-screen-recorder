@@ -5,7 +5,7 @@
   <img src=".github/img/screenshot.png" alt="screenshot" />
 </p>
 
-> This project was made for learning purposes only and comes from [Fireship](https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA) YouTube channel with my own modifications
+> This project was made for learning purposes only and comes initially from [Fireship](https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA) YouTube channel with my own modifications
 
 # Download
 Available for Mac, Linux and Windows.
