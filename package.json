@@ -6,11 +6,8 @@
   "main": "src/main/index.js",
   "scripts": {
     "start": "MODE=development electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
     "postinstall": "electron-builder install-app-deps",
-    "release": "electron-builder --mac --windows --linux --publish always",
+    "release": "electron-builder --publish always",
     "ci:release": "git commit -am v2.1.1 && git tag v2.1.1; git push origin master && git push origin master --tags",
     "lint": "echo \"No linting configured\""
   },
@@ -20,33 +17,6 @@
     "email": "daltonmenezes@outlook.com"
   },
   "license": "MIT",
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "electron_screen_recorder"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
-  },
   "build": {
     "appId": "com.daltonmenezes.electron-screen-recorder",
     "productName": "Electron Screen Recorder",
@@ -86,6 +56,6 @@
     "@electron-forge/maker-squirrel": "6.0.0-beta.50",
     "@electron-forge/maker-zip": "6.0.0-beta.50",
     "electron": "8.2.4",
-    "electron-builder": "^22.4.0"
+    "electron-builder": "^22.9.1"
   }
 }
